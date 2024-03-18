@@ -3,33 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01. React 基础原理</title>
+    <title>02. React.createElement 实现原理</title>
 </head>
 <body>
     <div id="root"></div>
     <script>
-        // const element = <div title="Hello Welcome">Content</div>; // JSX
-        //1. JSX代码会被 Babel 转换成下面的代码
-        // const element = React.createElement("div", { "title": "Hello Welcome" }, "Content");
-        //2. React.createElement 会把element转换成下面的结构
-        const element = {
-            type: "div",
-            props: {
-                title: "Hello Welcom",
-                children: "Content"
+        const React = {
+            createElement: function(type, props, ...children) {
+                return {
+                    type,
+                    props: {
+                        ...props,
+                        children: children.map(child => {
+                            if (typeof child === "object") {
+                                return child;
+                            } else {
+                                return {
+                                    type: "TEXT_NODE",
+                                    props: {
+                                        nodeValue: child,
+                                        children: []
+                                    }
+                                };
+                            }
+                        })
+                    }
+                }
+
             }
         };
-        const container = document.getElementById("root");
-        //3. React.render会做如下操作
-        // ReactDOM.render(element, container);
-        const node = document.createElement(element.type);
-        node["title"] = element.props.title;
-        const text = document.createTextNode("");
-        text["nodeValue"] = element.props.children;
+        // const element = <div title="Hello Welcome"><p>Robin</p><b>Li</b></div>;
+        const divObject = React.createElement(
+            "div", 
+            {
+                title: "Hello Welcome",
+            }, 
+            React.createElement("p", null, "Robin"),
+            React.createElement("b", null, "Li")
+        );
 
-        node.appendChild(text);
-        container.appendChild(node);
-
+        console.log(divObject);
     </script>
 </body>
 </html>
