@@ -1,0 +1,23 @@
+{
+  "name": "react-principle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oracis/react-principle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oracis/react-principle/issues"
+  },
+  "homepage": "https://github.com/oracis/react-principle#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
