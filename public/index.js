@@ -1,7 +1,8 @@
-const divObject = (
+const element = (
   <div title="Hello Welcome">
     <p>Robin</p>
     <b>Li</b>
   </div>
 );
-console.log(divObject);
+const root = document.getElementById('root');
+ReactDOM.render(element, root);
